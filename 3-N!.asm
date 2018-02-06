@@ -1,3 +1,5 @@
+;º∆À„N!£®0<N<20£©
+
 include emu8086.inc
 
 data segment
