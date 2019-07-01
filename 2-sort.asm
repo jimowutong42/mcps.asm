@@ -3,7 +3,7 @@
 ;排序结果输出到屏幕（数据的个数不超过1024）
 
 ;数据段
-data segment    
+data segment
     filename DB "2-sort.txt", 0
     text DB 10000 DUP(0)
     num DW 1024 DUP(0)
@@ -24,16 +24,16 @@ start:
 
 ;打开2-sort.txt,返回AX=文件代号
     mov AL, 0               ;AL=0读,AL=1写,AL=3读/写
-    mov DX, offset filename ;DS:DX=地址
+    mov DX, offset filename ;DS:DX = 地址
     mov AH, 3dh
 	int 21h
 ;读取文件
-	mov BX, AX              ;BX=文件代号
+	mov BX, AX              ;BX = 文件代号
 	mov CX, 10000           ;读取的字节数
-	mov DX, offset text     ;DS:DX=地址
+	mov DX, offset text     ;DS:DX = 地址
 	mov AH, 3fh
 	int 21h
-;关闭文件                   ;BX=文件代号
+;关闭文件                    ;BX = 文件代号
 	mov AH, 3eh
 	int 21h
 	
@@ -46,7 +46,7 @@ loop0:
 	mov CL, text[SI]
 	mov CH, 0
 	cmp CX, 48
-    jl not_num              ;ASCII码<48则不是数字
+    jl not_num              ;ASCII码 < 48则不是数字
 	sub CX, 48
 	mov DX, 10
 	mul DX
@@ -58,7 +58,7 @@ not_num:
     cmp CX, 10
     je not_new_num
     mov num[DI], AX         ;存入num数组
-    add DI,2
+    add DI, 2
     cmp CX, 0
     je bubble_sort
 
@@ -68,26 +68,26 @@ not_new_num:
 	jmp loop0
 	
 bubble_sort:                ;冒泡排序
-    mov CX, DI              ;循环次数*2
-    mov SI, 0               ;i=0
-    mov DI, 0               ;j=0
+    mov CX, DI              ;循环次数 * 2
+    mov SI, 0               ;i = 0
+    mov DI, 0               ;j = 0
 loop_i:                     ;外层循环
-    mov AX, num[SI]         ;AX=num[i]
+    mov AX, num[SI]         ;AX = num[i]
 loop_j:                     ;内层循环
-    mov BX, num[DI]         ;BX=num[j]
+    mov BX, num[DI]         ;BX = num[j]
     cmp AX, BX
     jle continue
-    mov DX, AX              ;AX>BX，交换
+    mov DX, AX              ;AX > BX, 交换
     mov AX, BX
     mov BX, DX
     mov num[DI],BX          ;将交换后的数存入数组
     mov num[SI],AX
 continue:
-    add DI, 2               ;j=j+2
+    add DI, 2               ;j = j + 2
     cmp DI, CX
     jb  loop_j
-    add SI, 2               ;i=i+2
-    mov DI, SI              ;j=i
+    add SI, 2               ;i = i + 2
+    mov DI, SI              ;j = i
     cmp SI, CX
     jb  loop_i
 
@@ -127,7 +127,7 @@ finish:
     mov ah, 1               ;等待输入
     int 21h
     mov ax, 4c00h
-    int 21h    
+    int 21h
 ends
 
 end start

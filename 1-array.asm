@@ -37,7 +37,7 @@ init:
     mov arr[DI], AL
     inc AX
     cmp AX, 37
-    je  initok          ;AX==37则跳转initok
+    je  initok          ;AX == 37则跳转initok
     jmp init            ;init循环
     
 initok:
@@ -47,21 +47,21 @@ print:
 ;判断是否是左下三角
     mov AX, BX
     mov CL, 6
-    div CL              ;商AL，余数AH，01/6=0...1
+    div CL              ;商AL，余数AH，01/6 = 0...1
     inc BX
     cmp AL, AH
-    jl  notprint        ;商AL<余数AH,下一个数就不输出
+    jl  notprint        ;商AL < 余数AH, 下一个数就不输出
 
 ;除以10后分别输出高位和低位
     mov AX, BX
     mov CL, 10
     div CL
-    mov CX, AX          ;CX要打印的数
-    mov DL, CL          ;DL=CL个位
+    mov CX, AX          ;CX = 要打印的数
+    mov DL, CL          ;DL = CL的个位
     add DL, '0'
     mov AH, 2
     int 21h
-    mov DL, CH          ;DL=CH十位
+    mov DL, CH          ;DL = CH的十位
     add DL, '0'
     int 21h
     mov DL, ' '
