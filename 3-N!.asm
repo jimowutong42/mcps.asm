@@ -1,6 +1,6 @@
 ;º∆À„N!£®0<N<20£©
 
-include emu8086.inc
+include .\emu8086\emu8086.inc
 
 ; ˝æ›∂Œ
 data segment

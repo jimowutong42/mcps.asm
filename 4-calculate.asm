@@ -2,7 +2,7 @@
 ;其中，表达式长度不超过1024个字节，
 ;从键盘输入，可带括号，操作数为字数据
 
-include 'emu8086.inc'
+include .\emu8086\emu8086.inc
 
 ;数据段
 data segment
