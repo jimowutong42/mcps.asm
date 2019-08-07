@@ -1,0 +1,22 @@
+1.asm:
+  bl——输入的数字
+  bh——输入的字符
+  print1：打印三角图案
+    cl——当前行应该打印的字符数
+    ch——当前行已经打印的字符数
+    print1_line：打印一行
+    print1_enter：打印换行
+      每次换行置零ch, cl+1, cl>bl则print2
+  print2：打印两个镜像三角图案的叠加
+    cl——当前行应该打印的字符数
+    ch——当前行已经打印的字符数
+    dh——当前行还要打印的空格数+1
+      print2_line：打印一行
+      print2_blank：打印空格
+      print2_enter：打印换行
+      每次换行置零ch, cl+1, 计算当前行还要打印的空格数+1=dh，dh<1则结束
+
+2.asm
+  openfile：3dh型中断打开文件
+  readfile：3fh型中断读取文件
+  printtext：9h型中断打印字符串text
